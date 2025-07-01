@@ -1,6 +1,3 @@
-let humanScore = 0;
-let computerScore = 0;
-
 function getComputerChoice() {
     choices = ["rock", "paper", "scissors"];
     return choices[Math.floor(Math.random() * 3)];
@@ -12,34 +9,57 @@ function getHumanChoice() {
 }
 
 function playRound(h, c) {
-    let output = "";
+    let message = "";
+    let output = 0;
 
     let tempH = h[0].charCodeAt(0);
     let tempC = c[0].charCodeAt(0);
 
-    console.log(tempH-tempC);
-
     switch (tempH - tempC) {
         case 0:
-            output = "it's a tie";
+            message = `it's a tie, you chose ${h} and your opponent chose ${c}.`;
             break;
         case -2:
         case -1:
         case 3:
-            output = `you have won! you chose ${h} and your opponent chose ${c}.`;
+            message = `you have won! you chose ${h} and your opponent chose ${c}.`;
+            output = 1;
             break;
         default:
-            output = `you have lost :(! you chose ${h} and your opponent chose ${c}.`;
+            message = `you have lost :(! you chose ${h} and your opponent chose ${c}.`;
+            output = -1;
             break;
     }
-
+    
+    console.log(message);
     return output
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+function playGame() {
+    let gameCount = 0;
+    let humanScore = 0;
+    let computerScore = 0;
 
-console.log(playRound(humanSelection, computerSelection));
+    while (gameCount < 5) {
+        console.log(`you are playing round ${gameCount + 1}.`);
+        let humanSelection = getHumanChoice();
+        let computerSelection = getComputerChoice();
+        let temp = playRound(humanSelection, computerSelection);
+        humanScore += temp;
+        computerScore -= temp;
+        ++gameCount;
+    }
+
+    if (humanScore > computerScore) {
+        console.log("FINAL: you have won overall!!");
+    } else if ((humanScore < computerScore)) {
+        console.log("FINAL: and you have lost :( better luck next time!");
+    } else {
+        console.log("FINAL: well, seems like it's a tie overall heh.");
+    }
+}
+
+playGame();
 
 
 
