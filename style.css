@@ -5,15 +5,20 @@ body {
 }
 
 p {
-    font-size: x-large;
+    font-size: large;
 }
 
 button {
-    width: 80px;
-    height: 42px;
+    width: 92px;
+    height: 48px;
 }
 
 .score {
     display: flex;
     gap: 8px;
+}
+
+.score-container {
+    display: flex;
+    gap: 24px;
 }

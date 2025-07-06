@@ -11,29 +11,32 @@ function getHumanChoice() {
 */
 
 function playRound(h, c) {
-    let message = "";
     let output = 0;
-
+    const message = document.querySelector(".round-outcome");
+    const playerScore = document.querySelector(".player .score-point");
+    const comScore = document.querySelector(".computer .score-point");
     let tempH = h[0].charCodeAt(0);
     let tempC = c[0].charCodeAt(0);
 
     switch (tempH - tempC) {
         case 0:
-            message = `it's a tie, you chose ${h} and your opponent chose ${c}.`;
+            message.textContent = `it's a tie, you chose ${h} and your opponent chose ${c}.`;
             break;
         case -2:
         case -1:
         case 3:
-            message = `you have won! you chose ${h} and your opponent chose ${c}.`;
+            message.textContent = `you won! you chose ${h} and your opponent chose ${c}.`;
+            playerScore.textContent = parseInt(playerScore.textContent) + 1;
             output = 1;
             break;
         default:
-            message = `you have lost :(! you chose ${h} and your opponent chose ${c}.`;
+            message.textContent = `you lost :( you chose ${h} and your opponent chose ${c}.`;
+            comScore.textContent = parseInt(comScore.textContent) + 1;
             output = -1;
             break;
     }
-    
-    console.log(message);
+
+    console.log(message.textContent);
     return output
 }
 
