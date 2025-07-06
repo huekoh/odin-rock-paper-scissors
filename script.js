@@ -3,10 +3,12 @@ function getComputerChoice() {
     return choices[Math.floor(Math.random() * 3)];
 }
 
+/*
 function getHumanChoice() {
     let choice = prompt("Please input one of these choices: rock, paper or scissors");
     return choice;
 }
+*/
 
 function playRound(h, c) {
     let message = "";
@@ -35,6 +37,7 @@ function playRound(h, c) {
     return output
 }
 
+/*
 function playGame() {
     let gameCount = 0;
     let humanScore = 0;
@@ -60,6 +63,18 @@ function playGame() {
 }
 
 playGame();
+*/
 
+function main() {
+    choices = ["rock", "paper", "scissors"];
+    choices.forEach(choice => {
+        const btn = document.querySelector(`#${choice}`);
+        btn.addEventListener("click", () => {
+            const computerSelection = getComputerChoice();
+            playRound(choice, computerSelection);
+        });
+    });
+}
 
+main();
 
